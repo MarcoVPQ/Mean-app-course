@@ -1,0 +1,23 @@
+.text-center{
+    text-align: center;
+}
+
+mat-spinner{
+    margin: 100px auto;
+}
+
+.post-img{
+ display: flex; 
+ justify-content: center;  
+ width: 100%;
+ 
+ & > img{
+    box-shadow: 1px 1px 5px rgba(0,0,0,.5);
+    margin: 1rem auto;
+    width: 60%;
+ }
+}
+
+mat-paginator{
+    margin-top: 1rem;
+}
