@@ -87,9 +87,8 @@ export class PostCreateComponent implements OnInit {
       this.postsService.addPost(
         this.form.value.title,
         this.form.value.content,
-        this.form.value.file,
-
-      )
+        this.form.value.file
+        )
     } else{
       this.postsService.updatePost(
         this.postId ,

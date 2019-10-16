@@ -3,8 +3,10 @@ import { Subject } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/Operators';
 import { Router } from '@angular/router';
-import { AuthService } from './../auth/auth.service';
 
+import { environment } from './../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/posts'
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +17,7 @@ export class PostsService {
 
     constructor(
         private http: HttpClient, 
-        private router : Router,
-        private authService: AuthService
+        private router : Router
         ){ }
 
     getPosts(postPerPage: number, currentPage: number){
@@ -57,7 +58,7 @@ export class PostsService {
 
         this.http
         .post<{message: string, post: Post}>(
-            'http://localhost:8000/api/posts',
+            BACKEND_URL,
              postData
         )
         .subscribe((responseData) => {
@@ -67,7 +68,7 @@ export class PostsService {
     }
 
     deletePost(postId: string){
-        return this.http.delete(`http://localhost:8000/api/posts/${postId}`)
+        return this.http.delete(`${BACKEND_URL}/${postId}`)
     }
 
     getPost(id:string){
@@ -93,7 +94,7 @@ export class PostsService {
             }
         }
         this.http
-        .put(`http://localhost:8000/api/posts/${id}`, formData)
+        .put(`${BACKEND_URL}/${id}`, formData)
         .subscribe( response => {
             const updatedPosts = [...this.posts]
             this.router.navigate(['/'])
